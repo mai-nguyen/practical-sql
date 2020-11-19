@@ -129,8 +129,9 @@ SELECT * FROM us_counties_2010;
 -- data for the book according to the steps listed on page xxvii in the Introduction.
 -- Windows users: Please check the Note on page xxvii as well.
 
+-- changed dir to Public bc Pg didn't have permission to read file in correct dir
 COPY us_counties_2010
-FROM 'C:\YourDirectory\us_counties_2010.csv'
+FROM 'C:\Users\Public\us_counties_2010.csv'
 WITH (FORMAT CSV, HEADER);
 
 -- Checking the data
