@@ -19,7 +19,7 @@ CREATE TABLE acs_2011_2015_stats (
 );
 
 COPY acs_2011_2015_stats
-FROM 'C:\YourDirectory\acs_2011_2015_stats.csv'
+FROM 'C:\Users\Public\acs_2011_2015_stats.csv'
 WITH (FORMAT CSV, HEADER, DELIMITER ',');
 
 SELECT * FROM acs_2011_2015_stats;
@@ -145,7 +145,7 @@ CREATE TABLE fbi_crime_data_2015 (
 );
 
 COPY fbi_crime_data_2015
-FROM 'C:\YourDirectory\fbi_crime_data_2015.csv'
+FROM 'C:\Users\Public\fbi_crime_data_2015.csv'
 WITH (FORMAT CSV, HEADER, DELIMITER ',');
 
 SELECT * FROM fbi_crime_data_2015
@@ -165,3 +165,4 @@ SELECT
 FROM fbi_crime_data_2015
 WHERE population >= 500000
 ORDER BY (property_crime::numeric / population) DESC;
+
