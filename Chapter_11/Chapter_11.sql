@@ -147,7 +147,7 @@ COPY nyc_yellow_taxi_trips_2016_06_01 (
     improvement_surcharge,
     total_amount
    )
-FROM 'C:\YourDirectory\yellow_tripdata_2016_06_01.csv'
+FROM 'C:\Users\Public\yellow_tripdata_2016_06_01.csv'
 WITH (FORMAT CSV, HEADER, DELIMITER ',');
 
 CREATE INDEX tpep_pickup_idx
@@ -174,7 +174,7 @@ COPY
     GROUP BY trip_hour
     ORDER BY trip_hour
     )
-TO 'C:\YourDirectory\hourly_pickups_2016_06_01.csv'
+TO 'C:\Users\Public\hourly_pickups_2016_06_01.csv'
 WITH (FORMAT CSV, HEADER, DELIMITER ',');
 
 -- Listing 11-10: Calculating median trip time by hour
