@@ -48,24 +48,18 @@ AS calcs;
 SELECT census.state_us_abbreviation AS st,
        census.st_population,
        plants.plant_count,
-       round((plants.plant_count/census.st_population::numeric(10,1)) * 1000000, 1)
-           AS plants_per_million
+       round(
+				(plants.plant_count/census.st_population::numeric(10,1)) * 1000000, 
+				1
+			 ) AS plants_per_million
 FROM
-    (
-         SELECT st,
-                count(*) AS plant_count
-         FROM meat_poultry_egg_inspect
-         GROUP BY st
-    )
-    AS plants
+    (SELECT st, count (*) AS plant_count
+     FROM meat_poultry_egg_inspect
+     GROUP BY st) AS plants
 JOIN
-    (
-        SELECT state_us_abbreviation,
-               sum(p0010001) AS st_population
-        FROM us_counties_2010
-        GROUP BY state_us_abbreviation
-    )
-    AS census
+    (SELECT state_us_abbreviation, sum(p0010001) AS st_population
+     FROM us_counties_2010
+     GROUP BY state_us_abbreviation) AS census
 ON plants.st = census.state_us_abbreviation
 ORDER BY plants_per_million DESC;
 
@@ -210,7 +204,7 @@ CREATE TABLE ice_cream_survey (
 );
 
 COPY ice_cream_survey
-FROM 'C:\YourDirectory\ice_cream_survey.csv'
+FROM 'C:\Users\Public\ice_cream_survey.csv'
 WITH (FORMAT CSV, HEADER);
 
 -- Listing 12-11: Generating the ice cream survey crosstab
@@ -245,7 +239,7 @@ CREATE TABLE temperature_readings (
 
 COPY temperature_readings 
      (station_name, observation_date, max_temp, min_temp)
-FROM 'C:\YourDirectory\temperature_readings.csv'
+FROM 'C:\Users\Public\temperature_readings.csv'
 WITH (FORMAT CSV, HEADER);
 
 -- Listing 12-13: Generating the temperature readings crosstab
@@ -254,8 +248,7 @@ SELECT *
 FROM crosstab('SELECT
                   station_name,
                   date_part(''month'', observation_date),
-                  percentile_cont(.5)
-                      WITHIN GROUP (ORDER BY max_temp)
+                  percentile_cont(.5) WITHIN GROUP (ORDER BY max_temp)
                FROM temperature_readings
                GROUP BY station_name,
                         date_part(''month'', observation_date)
