@@ -276,7 +276,7 @@ CREATE TABLE president_speeches (
 );
 
 COPY president_speeches (president, title, speech_date, speech_text)
-FROM 'C:\YourDirectory\sotu-1946-1977.csv'
+FROM 'C:\Users\Public\sotu-1946-1977.csv'
 WITH (FORMAT CSV, DELIMITER '|', HEADER OFF, QUOTE '@');
 
 SELECT * FROM president_speeches;

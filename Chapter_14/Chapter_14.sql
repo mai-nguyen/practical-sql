@@ -31,9 +31,7 @@ SELECT ST_GeomFromText('LINESTRING(-74.9 42.7, -75.1 42.7)', 4326);
 SELECT ST_GeomFromText('POLYGON((-74.9 42.7, -75.1 42.7,
                                  -75.1 42.6, -74.9 42.7))', 4326);
 
-SELECT ST_GeomFromText('MULTIPOINT (-74.9 42.7, -75.1 42.7)', 4326);
-
-SELECT ST_GeomFromText('MULTILINESTRING((-76.27 43.1, -76.06 43.08),
+SELECT ST_GeomFromText('MULTIPOINT (-74.9 42.7, -75.1 42.7)', 4326)SELECT ST_GeomFromText('MULTILINESTRING((-76.27 43.1, -76.06 43.08),
                                         (-76.2 43.3, -76.2 43.4,
                                          -76.4 43.1))', 4326);
 
@@ -47,7 +45,10 @@ SELECT ST_GeomFromText('MULTIPOLYGON((
 -- Listing 14-5: Using ST_GeogFromText() to create spatial objects
 
 SELECT
-ST_GeogFromText('SRID=4326;MULTIPOINT(-74.9 42.7, -75.1 42.7, -74.924 42.6)');
+ST_GeogFromText(
+    'SRID=4326;
+    MULTIPOINT(-74.9 42.7, -75.1 42.7, -74.924 42.6)'
+    );
 
 -- Listing 14-6: Functions specific to making points
 
@@ -100,7 +101,7 @@ CREATE TABLE farmers_markets (
 );
 
 COPY farmers_markets
-FROM 'C:\YourDirectory\farmers_markets.csv'
+FROM 'C:\Users\Public\farmers_markets.csv'
 WITH (FORMAT CSV, HEADER);
 
 SELECT count(*) FROM farmers_markets; -- should return 8,681 rows

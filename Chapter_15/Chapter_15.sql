@@ -74,7 +74,6 @@ VALUES ('Jamil', 'White', 2);
 
 -- optional:
 SELECT * FROM employees_tax_dept;
-
 SELECT * FROM employees;
 
 -- Listing 15-7: Updating a row via the employees_tax_dept view
@@ -218,7 +217,7 @@ CREATE OR REPLACE FUNCTION record_if_grade_changed()
     RETURNS trigger AS
 $$
 BEGIN
-    IF NEW.grade <> OLD.grade THEN
+    IF NEW.grade != OLD.grade THEN
     INSERT INTO grades_history (
         student_id,
         course_id,
